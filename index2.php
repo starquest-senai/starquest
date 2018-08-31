@@ -13,6 +13,12 @@ include_once("includes/banco_de_dados.php");
 
 $arrayUsuarios = select("SELECT * FROM usuarios");
 
+
+
+
+
+
+
 echo "<table border='1'>";
 echo "<tr>";
 echo "<th>Identificador</th>";
