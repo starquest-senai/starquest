@@ -28,10 +28,7 @@
 
 		<div id="perguntas">
             <h1 id="questao"></h1>
-            <h2 id="alternativa_a"></h2>
-			<h2 id="alternativa_b"></h2>
-			<h2 id="alternativa_c"></h2>
-			
+            <h2 id="resposta_questao"></h2>
             <!-- <button onclick="manda_pergunta(0)">inicia</button> -->
         </div>
 
@@ -58,6 +55,7 @@
     var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example');
 	var gameOver = false;
 	var scoreGlobal = 0;
+
 	
 	class gameoverState extends Phaser.State{
 		
@@ -84,7 +82,7 @@
 			counter = 30;
 			retomarJogo();
 			myTimer();
-			game.state.start('jogo');	
+			this.game.state.start('jogo');	
 			var btnFacebook = document.getElementById('btnFace');
 			btnFacebook.style.display = 'none'; // oculta a div
 		}	
@@ -102,6 +100,8 @@
 			this.fireButton;
 			this.scoreText;
 			this.nivelText;
+			this.lives;
+			this.lives_ship;		
 			this.score = 0;
 			this.disabledWeapon=false;
 			this.tempoText;
@@ -161,7 +161,21 @@
 			//  Textos
 			this.scoreText = this.add.text(600,550, 'SCORE: 0', { fontSize: '30px', fill: '#FFF' });
 			this.nivelText = this.add.text(620,500, 'FASE 1', { fontSize: '30px', fill: '#FFF' });
-			this.tempoText = this.add.text(500,10, 'Tempo restante:' + counter , { fontSize: '20px', fill: '#FFF' });
+			this.tempoText = this.add.text(10,10, 'Tempo restante:' + counter , { fontSize: '20px', fill: '#FFF' });
+			
+			
+			
+			//  Lives
+			this.lives = game.add.group();
+			game.add.text(game.world.width - 100, 10, 'Lives: ', { fontSize: '25px', fill: '#fff' });
+						
+			for (var i = 0; i < 3; i++) 
+				{
+				    this.lives_ship = this.lives.create(game.world.width - 110 + (45 * i), 60, 'ship');
+					this.lives_ship.anchor.setTo(0.5, 0.5);
+					this.lives_ship.angle = 90;
+					this.alpha = 0.4;
+				}		
 			
 			//  Cursor e botão de tiro
 			this.cursors = this.input.keyboard.createCursorKeys();
@@ -177,7 +191,7 @@
 				var c;
 				var rand = this.myArray[Math.floor(Math.random() * this.myArray.length)];
 
-					c = this.group.create(game.world.randomX, game.world.randomY, 'asteroidemedio'+rand);
+					c = this.group.create(this.game.world.randomX-400, this.game.world.randomY-300, 'asteroidemedio'+rand);
 					c.data.nome = rand;
 
 				c.name = 'ast' + i;
@@ -189,28 +203,46 @@
 
 		}	
 	
-		colidiu(shipP, asteroideP){
-			shipP.exists=false;
-			this.disabledWeapon = true;  		
-			game.state.start('GameOver');
+		colidiu(shipP, asteroideP){		
+			
+			var live = this.lives.getFirstAlive();
+
+			if (live)
+			{
+				live.kill();
+				asteroideP.kill();
+				setTimeout(function(){ jogoStateObjeto.criarGrupo(1); }, 3000);
+			}	
+	
+		// When the player dies
+			if (this.lives.countLiving() < 1)
+			{
+				shipP.exists=false;
+				this.disabledWeapon = true;  		
+				game.state.start('GameOver');
+
+			}
 		}
+		
+		
 
 		destruiu(bulletsP,asteroideP){
 			bulletsP.kill();
 			asteroideP.kill();
 
-			if(alternativa_correta == asteroideP.data.nome)
+			if(arrayPerguntas[0].resposta == asteroideP.data.nome)
 				this.score+= 1;
 			else
-				this.score-= 1;
+				this.score+= 1;
 				this.scoreText.setText('SCORE: ' + this.score);	
-				setTimeout(this.criarGrupo(1), 3000);		
+				setTimeout(function(){ jogoStateObjeto.criarGrupo(1); }, 3000);		
 				scoreGlobal = this.score;			
 		}
-				
+		
+		
 		 update() {
 
-			game.physics.arcade.collide(this.ship, this.group, this.colidiu);
+			game.physics.arcade.collide(this.ship, this.group, this.colidiu, null, this);
 
 			game.physics.arcade.overlap(this.weapon.bullets, this.group, this.destruiu, null, this);
 
@@ -240,7 +272,6 @@
 			if (this.fireButton.isDown && !this.disabledWeapon)
 			{
 				this.weapon.fire();
-
 			}
 
 			this.nivelText.setText;
@@ -260,8 +291,10 @@
 
 	};		
 	
+	var jogoStateObjeto = new jogoState();
+	
 	game.state.add('GameOver',gameoverState);
-	game.state.add('jogo',jogoState);		
+	game.state.add('jogo',jogoStateObjeto);		
 	game.state.start('jogo');	
 			
 		function pausarJogo() {       
