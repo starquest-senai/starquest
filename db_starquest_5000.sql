@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 -- Estrutura para tabela `administradores`
 --
 
+CREATE SCHEMA IF NOT EXISTS `db_starquest` DEFAULT CHARACTER SET utf8 ;
+USE `db_starquest` ;
+
 CREATE TABLE `administradores` (
   `id` tinyint(3) UNSIGNED NOT NULL COMMENT 'Campo para armazenar id do administrador.',
   `email` varchar(70) NOT NULL COMMENT 'Campo para armazenar email do administrador.',
