@@ -2,19 +2,7 @@
 include_once ("_includes/banco_de_dados.php");
 ?>
 
-<?php
-var_dump($_GET["mensagem"]);
-var_dump($_GET["status"])
-if(isset($_GET["mensagem"]) && isset($_GET["status"])){
-?>
 
-    <div id="msg_erro" class="alert alert-<?php echo $_GET["status"]; ?>" role="alert">
-        <?php   echo $_GET["mensagem"];  ?>
-    </div>
-
-<?php
-}
-?>
 
 <!DOCTYPE html>
 <html lang="pt-br">

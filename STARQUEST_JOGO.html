@@ -28,7 +28,10 @@
 
 		<div id="perguntas">
             <h1 id="questao"></h1>
-            <h2 id="resposta_questao"></h2>
+            <h2 id="alternativa_a"></h2>
+			<h2 id="alternativa_b"></h2>
+			<h2 id="alternativa_c"></h2>
+			
             <!-- <button onclick="manda_pergunta(0)">inicia</button> -->
         </div>
 
@@ -196,10 +199,10 @@
 			bulletsP.kill();
 			asteroideP.kill();
 
-			if(arrayPerguntas[0].resposta == asteroideP.data.nome)
+			if(alternativa_correta == asteroideP.data.nome)
 				this.score+= 1;
 			else
-				this.score+= 1;
+				this.score-= 1;
 				this.scoreText.setText('SCORE: ' + this.score);	
 				setTimeout(this.criarGrupo(1), 3000);		
 				scoreGlobal = this.score;			

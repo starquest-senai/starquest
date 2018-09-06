@@ -13,16 +13,28 @@ function Pergunta(pPergunta, pOpcaoA, pOpcaoB, pOpcaoC, pResposta){
 }
 
 function manda_pergunta(qual) {
+	
     var num = qual;
-    array1 = ["1. O que é um espaço na memória para para guardar dados?", "2. Algoritmo é uma sequência de passos:", "3. Como é chamada uma das formas de representar a lógica de programação?", "4. Das opções abaixo, qual seria um comando de saída?", "5. Qual variável pode armazenar vários dados do mesmo tipo?"];
-    array2 = ["Variável", "Finitos", "Portugol", "escreva(''Starquest'');", "Vetor"];
+	
+	
+    pergunta = [];
+    alternativa_A = [];
+	alternativa_B = [];
+	alternativa_C = [];
+	alternativa_correta = "A";
+	tema = [];
+	
 
-    document.getElementById("questao").innerHTML = array1[num];
-    document.getElementById("resposta_questao").innerHTML = array2[num];
+    document.getElementById("questao").innerHTML = pergunta[num];
+    document.getElementById("alternativa_a").innerHTML = alternativa_A[num];
+	document.getElementById("alternativa_b").innerHTML = alternativa_B[num];
+	document.getElementById("alternativa_c").innerHTML = alternativa_C[num];
 
 
     var objPergunta = new Pergunta("1. O que é um espaço na memória para para guardar dados?", "hahha","varivavel", "asa", "B");
     arrayPerguntas.push(objPergunta);
+	
+	
 
 
 }
