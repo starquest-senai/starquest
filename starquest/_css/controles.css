@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+#controles{
+    width: 1000px;
+    height: 500px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin: 3% auto 3% auto;
+}
+
+div#teclado{
+    width: 900px;
+    display: block;
+    position: relative;
+    margin: 2% auto 10px auto;
+}
+
+div#teclado img{
+    position: relative;
+    margin-left: 100px;
+}
+
+div#teclado p{
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18pt;
+    margin: 20px 0px;
+}
+
+div#botoes{
+    width: 900px;
+    display: block;
+    position: relative;
+    margin: 5% auto 10px auto;
+}
+
+div#botoes img{
+    position: relative;
+    margin-left: 100px;
+}
+
+div#texto_controles p{
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    text-align: center;
+    font-size: 18pt;
+    margin: 20px 0px;
+}
+
+div#texto_controles p#atirar{
+    display: block;
+    position: relative;
+    float: left;
+    margin: 20px 10px 5px 190px;
+}
+
+div#texto_controles p#pausa_texto{
+    display: block;
+    position: relative;
+    float: left;
+    margin: 20px 10px 5px 250px;
+}
+
+img#pausa{
+    height: 100px;
+    padding-left: 100px;
+}
+
+section#corpo a{
+    display: block;
+    position: absolute;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: -7.5% 0% 3% 5%;
+}
