@@ -1,21 +1,21 @@
 <?php
-include_once("_includes/banco_de_dados.php");
+include_once("includes/banco_de_dados.php");
 
 $array_perguntas = select ("SELECT * FROM perguntas ");
 $key = array_rand($array_perguntas); 
 ?>
 
-
-<html> 
+<!DOCTYPE html>
+<html lang="pt-br">
 <head> 
     <meta charset="UTF-8" />
     <title>STARQUEST</title>
 
-    <link rel="stylesheet" type="text/css" href="_css/perguntas.css"/>
-    <link rel="stylesheet" type="text/css" href="_css/index.css"/>
-    <link rel="stylesheet" type="text/css" href="_css/pagina_inicial.css"/>
-	<link rel="stylesheet" href="_css/bootstrap.min.css" >
-    <script src="js/phaser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/perguntas.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/pagina_inicial.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="assets/js/phaser.min.js"></script>
  
     <style type="text/css">
         body {
@@ -96,8 +96,8 @@ $key = array_rand($array_perguntas);
 		
 		play(){	
 			gameOver = true;
-			counter = 10;
-			retomarJogo();			
+			counter = 30;
+			retomarJogo();
 			myTimer();
 			this.game.state.start('jogo');	
 			var btnFacebook = document.getElementById('btnFace');
@@ -129,8 +129,8 @@ $key = array_rand($array_perguntas);
 		
 		play(){		
 			gameOver = true;
-			counter = 10;
-			retomarJogo();		
+			counter = 30;
+			retomarJogo();
 			myTimer();
 			this.game.state.start('jogo');	
 			var btnFacebook = document.getElementById('btnFace');
@@ -167,8 +167,8 @@ $key = array_rand($array_perguntas);
 			game.load.image('asteroidemedioA','img/AsteroideG_A_70x80.png');
 			game.load.image('asteroidemedioB','img/AsteroideG_B_70x80.png');
 			game.load.image('asteroidemedioC','img/AsteroideG_C_70x80.png');
-			game.load.image('play','_img/play-icon_342x342.png');
-			game.load.image('botao_reiniciar','_img/botao_reiniciar.png');
+			game.load.image('play','img/play-icon_342x342.png');
+			game.load.image('botao_reiniciar','img/botao_reiniciar.png');
 		}
 	
 	   create() {	
@@ -269,8 +269,7 @@ $key = array_rand($array_perguntas);
 		// Quando o jogador morre
 			if (this.lives.countLiving() < 1)
 			{
-				shipP.exists=false;
-				pause();		
+				shipP.exists=false;				 		
 				game.state.start('GameOver');
 
 			}
@@ -392,14 +391,14 @@ $key = array_rand($array_perguntas);
     </script>	
 
     <section id="botao_voltar_jogo">
-        <a href="" class="button orange shield glossy" style="padding-left: 1em; padding-right: 1em; margin: -7.5% 0% 3% 10%">
-		<img src="_img/botao_voltar_30x34.png"></a>
-        <img id="pausajogo" src="_img/pause-icon_512x512.png" onclick="pausarJogo(),pause()">
-		<img id="playjogo" src="_img/play-icon_342x342.png" onclick="retomarJogo(),myTimer()">
+        <a href="pagina_inicial.php" class="button orange shield glossy" style="padding-left: 1em; padding-right: 1em; margin: -7.5% 0% 3% 10%">
+		<img src="img/botao_voltar_30x34.png"></a>
+        <img id="pausajogo" src="img/pause-icon_512x512.png" onclick="pausarJogo(),pause()">
+		<img id="playjogo" src="img/play-icon_342x342.png" onclick="retomarJogo(),myTimer()">
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
