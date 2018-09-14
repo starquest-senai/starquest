@@ -19,6 +19,7 @@ function php_insert($pQuery){
 function select($pQuery){
     //                          servidor        usuário             senha           nome do banco
     $conexao = mysqli_connect("localhost","root","root","db_starquest");
+
     $dados = mysqli_query ($conexao,$pQuery)or die ("ERRO de conexão do select");
 
     $arraySelect = array();

@@ -15,33 +15,37 @@ p#bemvindo{
     color: #f5f5dc;
 }
 
+
+/*botoes tela jogo*/
 div#btnFace{
     position: absolute;
     margin-left: 65%;
     margin-top: 46%;
-    display:none;
+    display: none;
 }
 
 div#playjogo{
     position: absolute;
     margin-left: 45%;
     margin-top: 20%;
-    display:block;
+    display: block;
 }
 
 div#pausajogo{
     position: absolute;
     margin-left: 11%;
     margin-top: 2%;
-    display:block;
+    display: block;
 }
 
 div#btnVoltar{
     position: absolute;
     margin-left: 5%;
     margin-top: 38%;
-    display:block;
+    display: block;	
 }
+/*botoes tela jogo*/
+
 
 #logo_inicial{
     margin: 0px auto 0px auto;

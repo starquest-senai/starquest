@@ -1,10 +1,3 @@
-<?php
-include_once("includes/banco_de_dados.php");
-
-$array_perguntas = select ("SELECT * FROM perguntas ");
-$key = array_rand($array_perguntas); 
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head> 
@@ -15,51 +8,83 @@ $key = array_rand($array_perguntas);
     <link rel="stylesheet" type="text/css" href="assets/css/index.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/pagina_inicial.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <script src="assets/js/phaser.min.js"></script>
+	
+    <script src="assets/js/phaser.min.js"></script>	
  
     <style type="text/css">
         body {
             margin: 15px ;		
         }
 		canvas {
-			margin: auto auto;					
+			margin: auto auto;	
+			border: 4px solid #ffffff;
+			border-radius:20px;
 		}
     </style>
 </head>
 <body>
-	<div id="perguntas">
-		<h1 id="questao"> <?php echo $array_perguntas[$key]["perguntas"] ?>  </h1>
-		<div class="logo">
-		  <div id="alternativas" class="row">
-			<div id="respostas" class="col-4">
-			  A) <?php echo $array_perguntas[$key]["alternativa_a"] ?>
-			</div>
-			<div id="respostas" class="col-4">
-			  B) <?php echo $array_perguntas[$key]["alternativa_b"] ?>
-			</div>
-			<div id="respostas" class="col-4">
-			  C) <?php echo $array_perguntas[$key]["alternativa_c"] ?>
-			</div>
-		  </div>
-		  </div>
-	</div>
+	<div id="perguntas">		
+	</div>	
+	<div id="btnFace">
+		<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fstarquest2018senai.000webhostapp.
+		com%2Fcssref%2Fpr_background-image.asp&layout=button_count&size=small&mobile_iframe=
+		true&appId=446617082491196&width=113&height=20" width="113" height="20" style="border:none;overflow:hidden" 
+		scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">
+		</iframe>
 	
-		<div id="btnFace">
-			<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fstarquest2018senai.000webhostapp.
-			com%2Fcssref%2Fpr_background-image.asp&layout=button_count&size=small&mobile_iframe=
-			true&appId=446617082491196&width=113&height=20" width="113" height="20" style="border:none;overflow:hidden" 
-			scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">
-			</iframe>
-		
-			<div id="botao_compartilhar" class="bt_compartilhar" data-href="starquest2018senai.000webhostapp.com" data-layout="button_count"
-			data-size="small" data-mobile-iframe="true"> 
-			<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstarquest2018senai.000webhostapp.com%2F&src=sdkpreparse"> </a>		
-			</div>
+		<div id="botao_compartilhar" class="bt_compartilhar" data-href="starquest2018senai.000webhostapp.com" data-layout="button_count"
+		data-size="small" data-mobile-iframe="true"> 
+		<a target="_blank" href="https://www.facebook.com/sharer/sharer.
+		php?u=http%3A%2F%2Fstarquest2018senai.000webhostapp.com%2F&src=sdkpreparse"> </a>		
 		</div>
+	</div>
 
     <!-- PROGRAMAÇÃO DO JOGO -->
 	
     <script type="text/javascript">
+	
+	
+	var arrayPerguntas = new Array();
+	var pergunta;
+		
+	CarregarPerguntas();
+	
+	function CarregarPerguntas (){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200){
+				
+				arrayPerguntas = JSON.parse(this.responseText);
+				pergunta = arrayPerguntas[Math.floor(Math.random()*arrayPerguntas.length)];
+				
+				var html = '<h1><br>' + pergunta.perguntas + '</h1>';
+					html += '<div><br>';
+					html += '<div id="alternativas" class="row">';
+					html += '<div id="respostas" class="col-12">';
+					html += 'A)' + pergunta.alternativa_a;
+					html += '</div>';
+					html += '</div><br><br>';
+					html += '<div id="alternativas" class="row">';
+					html += '<div id="respostas" class="col-12">';
+					html += 'B)' + pergunta.alternativa_b;
+					html += '</div>';
+					html += '</div><br><br>';
+					html += '<div id="alternativas" class="row">';
+					html += '<div id="respostas" class="col-12">';
+					html += 'C)' + pergunta.alternativa_c;
+					html += '</div>';
+					html += '</div><br><br>';
+					html += '</div>';
+					
+				document.getElementById("perguntas").innerHTML = html;
+				
+				}	
+			};
+			
+			xhttp.open("GET", "manda_pergunta.php", true);
+			xhttp.send();
+	
+	}
 	
     var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example');
 	
@@ -86,7 +111,7 @@ $key = array_rand($array_perguntas);
 		}
 		
 		play(){			
-			counter = 20;
+			counter = 60;
 			this.game.state.start('jogo');	
 			
 			var play = document.getElementById('playjogo');
@@ -96,6 +121,8 @@ $key = array_rand($array_perguntas);
 			
 			var btnFacebook = document.getElementById('btnFace');
 			btnFacebook.style.display = 'none'; // oculta a div
+			
+			CarregarPerguntas();
 		}	
 		
 	};		
@@ -122,7 +149,7 @@ $key = array_rand($array_perguntas);
 		}
 		
 		play(){				
-			counter = 20;
+			counter = 60;
 			this.game.state.start('jogo');	
 			
 			var play = document.getElementById('playjogo');
@@ -132,6 +159,8 @@ $key = array_rand($array_perguntas);
 			
 			var btnFacebook = document.getElementById('btnFace');
 			btnFacebook.style.display = 'none'; // oculta a div
+			
+			CarregarPerguntas();
 		}	
 		
 	};		
@@ -172,7 +201,7 @@ $key = array_rand($array_perguntas);
 		   
 	   		//Jogo inicia pausado
 			
-				game.paused = true;						
+			game.paused = true;						
 			
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -207,7 +236,7 @@ $key = array_rand($array_perguntas);
 
 			//  Textos
 			this.scoreText = this.add.text(10,550, 'SCORE: 0', { fontSize: '30px', fill: '#FFF' });
-			this.nivelText = this.add.text(10,500, 'FASE 1', { fontSize: '30px', fill: '#FFF' });
+			this.nivelText = this.add.text(10,500, 'FASE: 1', { fontSize: '30px', fill: '#FFF' });
 			this.tempoText = this.add.text(10,10, 'Tempo restante:' + counter , { fontSize: '30px', fill: '#FFF' });			
 			
 			
@@ -237,13 +266,13 @@ $key = array_rand($array_perguntas);
 					var c;
 					var rand = this.myArray[Math.floor(Math.random() * this.myArray.length)];
 
-						c = this.group.create(this.game.world.randomX-400, this.game.world.randomY-300, 'asteroidemedio'+rand);
+						c = this.group.create(this.game.world.randomX-400, this.game.world.randomY-400, 'asteroidemedio'+rand);
 						c.data.nome = rand;
 
 					c.name = 'ast' + i;
 					c.body.bounce.set(1);
 					c.body.collideWorldBounds = false;
-					c.body.velocity.setTo(70, 90);
+					c.body.velocity.setTo(60,50);
 
 				}
 			}
@@ -276,13 +305,16 @@ $key = array_rand($array_perguntas);
 			bulletsP.kill();
 			asteroideP.kill();
 
-			if("<?php echo $array_perguntas[$key]["alternativa_correta"] ?>" == asteroideP.data.nome)
+			if(pergunta.alternativa_correta == asteroideP.data.nome)
 				this.score += 10;
-			else
+			else if(this.score >= 5)
 				this.score -= 5;
-			this.scoreText.setText('SCORE: ' + this.score);	
-			setTimeout(function(){ jogoStateObjeto.criarGrupo(1); }, 3000);		
-			scoreGlobal = this.score;			
+			else
+				this.score = 0;
+				this.scoreText.setText('SCORE: ' + this.score);	
+				setTimeout(function(){ jogoStateObjeto.criarGrupo(1); }, 3000);		
+				scoreGlobal = this.score;	
+			
 		}
 		
 		
@@ -353,6 +385,7 @@ $key = array_rand($array_perguntas);
 			var play = document.getElementById('playjogo');
 			play.style.display = 'none'; // oculta a div
 			game.paused = false;	
+			
 		}	
 		function pause(){	
 			clearTimeout(timer);	         
@@ -368,7 +401,7 @@ $key = array_rand($array_perguntas);
 		}
 		
 		//contador de tempo restante
-		var counter = 20;
+		var counter = 60;
 		var timer;
 			function myTimer() {
 			
@@ -401,8 +434,8 @@ $key = array_rand($array_perguntas);
 			<img id="playjogo" src="img/play-icon_342x342.png" onclick="playJogo(),myTimer()">
 		</div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" ></script>
+    <script src="assets/js/bootstrap.min.js" ></script>
 </body>
 </html>

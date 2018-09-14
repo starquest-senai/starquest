@@ -1,45 +1,23 @@
 @charset "UTF-8";
 
 div#perguntas{
-	position:absolute;
+	position: absolute;
     width: 250px;
-    height: 500px;
-    border: 1px solid #000000; 
+    height: 400px;
+	text-align: center;
+    border: 5px solid #ffffff; 
+	border-radius: 20px;	
     margin-left: 1070px;
     margin-top: 70px;
-    background-color: beige;
+    background-color: #0077b3;
+	color: #ffffff;
+	text-shadow: 2px 2px 2px black;	
 }
 div#perguntas h1{
     font-size: 15pt;
     text-align: center;
-    color: #000000;
-}
-div#perguntas h2{
-    font-size: 15pt;
-    text-align: center;
-    color: #000000;
-}
-
-input#submeter{
-    position: absolute;
-    margin-left: 45%;
-    margin-top: 17%;
-}
-
-section#botao_voltar_jogo a{
-    display: block;
-    position: absolute;
-    top: 800px;
-}
-
-#logo{
-    font-size: 20pt;
     color: #ffffff;
-}
-
-#alternativas{
-    margin-left:auto;
-    margin-right:auto;
+	text-shadow: 2px 2px 2px black;	
 }
 
 #respostas{
