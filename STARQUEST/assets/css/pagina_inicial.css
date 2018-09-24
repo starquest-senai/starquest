@@ -20,20 +20,20 @@ p#bemvindo{
 div#btnFace{
     position: absolute;
     margin-left: 65%;
-    margin-top: 46%;
+    margin-top: 38.5%;
     display: none;
 }
 
 div#playjogo{
     position: absolute;
-    margin-left: 45%;
-    margin-top: 20%;
+    margin-left: 47%;
+    margin-top: 19%;
     display: block;
 }
 
 div#pausajogo{
     position: absolute;
-    margin-left: 11%;
+    margin-left: 84%;
     margin-top: 2%;
     display: block;
 }

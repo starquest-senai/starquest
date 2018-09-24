@@ -12,20 +12,24 @@
     <script src="assets/js/phaser.min.js"></script>	
  
     <style type="text/css">
+	
         body {
             margin: 15px ;		
         }
-		canvas {
-			margin: auto auto;	
+		canvas {			
+			margin-left: 20%;			
 			border: 4px solid #ffffff;
-			border-radius:20px;
+			border-radius: 20px;
 		}
+		
     </style>
+	
 </head>
 <body>
 	<div id="perguntas">		
 	</div>	
 	<div id="btnFace">
+	
 		<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fstarquest2018senai.000webhostapp.
 		com%2Fcssref%2Fpr_background-image.asp&layout=button_count&size=small&mobile_iframe=
 		true&appId=446617082491196&width=113&height=20" width="113" height="20" style="border:none;overflow:hidden" 
@@ -37,13 +41,14 @@
 		<a target="_blank" href="https://www.facebook.com/sharer/sharer.
 		php?u=http%3A%2F%2Fstarquest2018senai.000webhostapp.com%2F&src=sdkpreparse"> </a>		
 		</div>
+		
 	</div>
 
     <!-- PROGRAMAÇÃO DO JOGO -->
 	
     <script type="text/javascript">
-	
-	
+	var game = new Phaser.Game(850, 590, Phaser.CANVAS, 'phaser-example');	
+	var scoreGlobal = 0;
 	var arrayPerguntas = new Array();
 	var pergunta;
 		
@@ -84,34 +89,38 @@
 			xhttp.open("GET", "manda_pergunta.php", true);
 			xhttp.send();
 	
-	}
+	}	
 	
-    var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example');
-	
-	var scoreGlobal = 0;
-
 	class gameoverState extends Phaser.State{
 		
 		constructor() {
 				super();
-				this.button;		
+				this.button;	
+				this.reiniciar;		
 			}	
 		
 		create() {
-			
-			this.scoreText = this.add.text(80,520, 'SCORE: 0', { fontSize: '30px', fill: '#FFF' });
-			this.scoreText.setText('SCORE: ' + scoreGlobal);			
-			this.add.text(130,140, 'GAME OVER :(', { fontSize: '80px', fill: '#FFF' });			
+		
+			this.scoreText = this.add.text(80,520, 'Pontos:', { font: 'Comic Sans MS', fontSize: '30px', fill: '#FFF' });
+			this.scoreText.setText('Pontos: ' + scoreGlobal);			
+			this.add.text(130,140, 'GAME OVER :(', { font: 'Comic Sans MS', fontSize: '80px', fill: '#FFF' });			
 			this.button = this.game.add.button(420,380, "botao_reiniciar" ,this.play,this);
+			this.add.text(352,440, 'REINICIAR', { font: 'Comic Sans MS', fontSize: '25px', fill: '#FFF' });		
 			this.button.anchor.setTo(0.5,0.5);	
+			scoreGlobal = 0;
+			
+			// Botão reiniciar
+			this.reiniciar = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+			this.reiniciar.onDown.add(this.play,this);	
 			
 			// botão compartilhar
 			var btnFacebook = document.getElementById('btnFace');
 			btnFacebook.style.display = 'block'; // mostra a div
 		}
 		
-		play(){			
-			counter = 60;
+		play(){	
+		
+			counter = 5;
 			this.game.state.start('jogo');	
 			
 			var play = document.getElementById('playjogo');
@@ -123,35 +132,42 @@
 			btnFacebook.style.display = 'none'; // oculta a div
 			
 			CarregarPerguntas();
+			
 		}	
 		
-	};		
-	
+	};			
 	
 	class finalState extends Phaser.State{
 		
 		constructor() {
 				super();
-				this.button;		
+				this.button;
+				this.proximaFase;				
 			}	
 		
 		create() {
 			
-			this.scoreText = this.add.text(80,520, 'SCORE: 0', { fontSize: '30px', fill: '#FFF' });
-			this.scoreText.setText('SCORE: ' + scoreGlobal);			
-			this.add.text(100,140, '!! PARABÉNS !!', { fontSize: '80px', fill: '#FFF' });			
+			this.scoreText = this.add.text(80,520, 'Pontos:', { font: 'Comic Sans MS', fontSize: '30px', fill: '#FFF' });
+			this.scoreText.setText('Pontos: ' + scoreGlobal);				
+			this.add.text(130,140, '!! PARABÉNS !!', { font: 'Comic Sans MS', fontSize: '80px', fill: '#FFF' });			
 			this.button = this.game.add.button(420,380, "play" ,this.play,this);
+			this.add.text(328,440, 'PROXIMA FASE', { font: 'Comic Sans MS', fontSize: '25px', fill: '#FFF' });		
 			this.button.anchor.setTo(0.5,0.5);	
+
+			// Botão proxima fase
+			this.proximaFase = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+			this.proximaFase.onDown.add(this.play,this);	
 			
 			// botão compartilhar
 			var btnFacebook = document.getElementById('btnFace');
 			btnFacebook.style.display = 'block'; // mostra a div
 		}
 		
-		play(){				
-			counter = 60;
+		play(){		
+		
+			counter = 5;
 			this.game.state.start('jogo');	
-			
+
 			var play = document.getElementById('playjogo');
 			play.style.display = 'block'; // mostra a div	
 								
@@ -161,6 +177,7 @@
 			btnFacebook.style.display = 'none'; // oculta a div
 			
 			CarregarPerguntas();
+			
 		}	
 		
 	};		
@@ -177,9 +194,10 @@
 			this.fireButton;
 			this.scoreText;
 			this.nivelText;
+			this.pause;
+			this.play;
 			this.lives;
-			this.lives_ship;		
-			this.score = 0;
+			this.lives_ship;	
 			this.disabledWeapon=false;
 			this.tempoText;
 			this.myArray = ['A', 'B', 'C'];			
@@ -198,16 +216,14 @@
 		}
 	
 	   create() {
-		   
-	   		//Jogo inicia pausado
-			
-			game.paused = true;						
-			
+	
+	   		//Jogo inicia pausado			
+			game.paused = true;			
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 
 			// Cria asteroides			
 			this.group = game.add.physicsGroup(Phaser.Physics.ARCADE);		
-			this.criarGrupo(6);		
+			this.criarGrupo(6);			
 			game.physics.arcade.enable(this.group);
 			
 
@@ -235,32 +251,41 @@
 			this.weapon.trackSprite(this.ship, 0, 0, true);
 
 			//  Textos
-			this.scoreText = this.add.text(10,550, 'SCORE: 0', { fontSize: '30px', fill: '#FFF' });
-			this.nivelText = this.add.text(10,500, 'FASE: 1', { fontSize: '30px', fill: '#FFF' });
-			this.tempoText = this.add.text(10,10, 'Tempo restante:' + counter , { fontSize: '30px', fill: '#FFF' });			
-			
-			
-			//  Vidas
+			this.scoreText = this.add.text(10,550, 'Pontos: ' + scoreGlobal, { font: 'Comic Sans MS', fontSize: '30px', fill: '#FFF' });
+			this.nivelText = this.add.text(10,500, 'Fase: 1', { font: 'Comic Sans MS', fontSize: '30px', fill: '#FFF' });
+			this.tempoText = this.add.text(10,10, 'Tempo restante:' + counter , { font: 'Comic Sans MS', fontSize: '30px', fill: '#FFF' });					
+				
+			//  Vidas				
 			this.lives = game.add.group();
-			game.add.text(game.world.width - 100, 10, 'Vidas: ', { fontSize: '30px', fill: '#fff' });
-						
-			for (var i = 0; i < 3; i++) 
+			game.add.text(game.world.width - 100, 10, 'Vidas: ', { font: 'Comic Sans MS', fontSize: '30px', fill: '#fff' });			
+	
+			for (var i = 0; i < 5; i++) 
+				
 				{
-				    this.lives_ship = this.lives.create(game.world.width - 120 + (46 * i), 70, 'ship');
+					this.lives_ship = this.lives.create(game.world.width - 210 + (46 * i), 70, 'ship');
 					this.lives_ship.anchor.setTo(0.5, 0.5);
 					this.lives_ship.angle = 90;
 					this.alpha = 0.4;
-				}		
-			
-			//  Cursor e botão de tiro
+				}
+		
+			// Cursor e botão de tiro
 			this.cursors = this.input.keyboard.createCursorKeys();
-			this.fireButton = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);		
+			this.fireButton = this.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+			
+			// Botão de pause
+			this.pause = game.input.keyboard.addKey(Phaser.Keyboard.P);
+			this.pause.onDown.add(pausarJogo, this);
+			
+			// Botão play
+			this.play = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+			this.play.onDown.add(playJogo,this);			
 			
 		}
 
 	   criarGrupo(qtd){
 
 			if(this.game != undefined){
+				
 				for (var i = 0; i < qtd; i++)
 				{
 					var c;
@@ -273,10 +298,10 @@
 					c.body.bounce.set(1);
 					c.body.collideWorldBounds = false;
 					c.body.velocity.setTo(60,50);
-
 				}
+				
 			}
-
+			
 		}	
 	
 		colidiu(shipP, asteroideP){		
@@ -295,8 +320,8 @@
 			if (this.lives.countLiving() < 1)
 			{
 				shipP.exists=false;	
-				pause();				
-				game.state.start('GameOver');
+				pause();			
+				game.state.start('GameOver');				
 
 			}
 		}		
@@ -306,14 +331,14 @@
 			asteroideP.kill();
 
 			if(pergunta.alternativa_correta == asteroideP.data.nome)
-				this.score += 10;
-			else if(this.score >= 5)
-				this.score -= 5;
+				scoreGlobal += 10;
+			else if(scoreGlobal >= 5)
+				scoreGlobal -= 5;
 			else
-				this.score = 0;
-				this.scoreText.setText('SCORE: ' + this.score);	
-				setTimeout(function(){ jogoStateObjeto.criarGrupo(1); }, 3000);		
-				scoreGlobal = this.score;	
+				scoreGlobal = 0;
+			
+			this.scoreText.setText('Pontos: ' + scoreGlobal);	
+			setTimeout(function(){ jogoStateObjeto.criarGrupo(1); }, 3000);			
 			
 		}
 		
@@ -321,7 +346,7 @@
 		 update() {
 
 			game.physics.arcade.collide(this.ship, this.group, this.colidiu, null, this);
-
+			
 			game.physics.arcade.overlap(this.weapon.bullets, this.group, this.destruiu, null, this);
 
 			if (this.cursors.up.isDown)
@@ -353,9 +378,10 @@
 			}
 
 			this.nivelText.setText;
+			
 			game.world.wrap(this.ship, 16);
 			
-			for(var i=0;i<this.group.length;i++){
+			for(var i=0;i < this.group.length;i++){
 			
 				game.world.wrap(this.group.children[i], 60);
 				
@@ -373,19 +399,20 @@
 	
 	game.state.add('TelaFinal',finalState);
 	game.state.add('GameOver',gameoverState);
-	game.state.add('jogo',jogoStateObjeto);		
-	game.state.start('jogo');	
+	game.state.add('jogo',jogoStateObjeto);	
+	game.state.start('jogo');
+	
 			
 		function pausarJogo() { 
 			var play = document.getElementById('playjogo');
 			play.style.display = 'block'; // mostra a div		
 			game.paused = true;	       			
 		}		
-		function playJogo() {
+		function playJogo() {			
 			var play = document.getElementById('playjogo');
 			play.style.display = 'none'; // oculta a div
 			game.paused = false;	
-			
+			myTimer();			
 		}	
 		function pause(){	
 			clearTimeout(timer);	         
@@ -401,7 +428,7 @@
 		}
 		
 		//contador de tempo restante
-		var counter = 60;
+		var counter = 15;
 		var timer;
 			function myTimer() {
 			
@@ -414,7 +441,7 @@
 					}
 					else if(counter == 0)
 					{						
-						game.state.start('TelaFinal');
+						game.state.start('TelaFinal');						
 									
 					}		
 				}			
@@ -431,7 +458,7 @@
 			<img id="pausajogo" src="img/pause-icon_512x512.png" onclick="pausarJogo(),pause()">
 		</div>
 		<div id="playjogo">		
-			<img id="playjogo" src="img/play-icon_342x342.png" onclick="playJogo(),myTimer()">
+			<img id="playjogo" src="img/play-icon_342x342.png" onclick="playJogo()">
 		</div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>

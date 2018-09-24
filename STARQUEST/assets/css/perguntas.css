@@ -3,16 +3,17 @@
 div#perguntas{
 	position: absolute;
     width: 250px;
-    height: 400px;
+    height: 410px;
 	text-align: center;
     border: 5px solid #ffffff; 
-	border-radius: 20px;	
-    margin-left: 1070px;
-    margin-top: 70px;
+	border-radius: 20px; 
+    margin-top: 3%;
     background-color: #0077b3;
 	color: #ffffff;
-	text-shadow: 2px 2px 2px black;	
+	text-shadow: 2px 2px 2px black;
+	font-family: Comic Sans MS;	
 }
+
 div#perguntas h1{
     font-size: 15pt;
     text-align: center;
