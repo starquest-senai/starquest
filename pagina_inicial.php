@@ -78,7 +78,7 @@ include "includes/validacao_sessao.php";
                 <div class="row">
                     <div class="col">
                         <div id="wrapper">
-                            <a href="controles.php" class="button orange shield glossy">INSTRUÇÕES</a> <br/>
+                            <a  class="button orange shield glossy">INSTRUÇÕES</a> <br/>
                         </div>
                     </div>
                     <div class="col">

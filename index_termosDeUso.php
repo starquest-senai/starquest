@@ -1,4 +1,6 @@
-
+<?php
+include "includes/validacao_sessao.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

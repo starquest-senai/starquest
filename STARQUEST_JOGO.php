@@ -391,7 +391,7 @@ $key = array_rand($array_perguntas);
     </script>	
 
     <section id="botao_voltar_jogo">
-        <a href="pagina_inicial.php" class="button orange shield glossy" style="padding-left: 1em; padding-right: 1em; margin: -7.5% 0% 3% 10%">
+        <a href="" class="button orange shield glossy" style="padding-left: 1em; padding-right: 1em; margin: -7.5% 0% 3% 10%">
 		<img src="img/botao_voltar_30x34.png"></a>
         <img id="pausajogo" src="img/pause-icon_512x512.png" onclick="pausarJogo(),pause()">
 		<img id="playjogo" src="img/play-icon_342x342.png" onclick="retomarJogo(),myTimer()">

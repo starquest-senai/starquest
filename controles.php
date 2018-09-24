@@ -29,17 +29,17 @@ include "includes/validacao_sessao.php";
         <h1>CONTROLES</h1>
         <div id="controles">
             <div id="teclado">
-                <!-- <img src="img/keyboard_wasd_300x200.png"> -->
+                <img src="img/keyboard_wasd_300x200.png">
                 <img src="img/keyboard_flechas_300x200.png">
                 <p>Movimentar a nave</p>
             </div>
 
             <div id="botoes">
                 <img src="img/keyboard_space_300x100.png">
-                <!-- <img id="pausa" src="img/keyboard_Pe.png"> -->
+                <img id="pausa" src="img/keyboard_Pe.png">
                 <div id="texto_controles">
                     <p id="atirar">Atirar</p>
-                   <!-- <p id="pausa_texto">Pausa</p> -->
+                    <p id="pausa_texto">Pausa</p>
                 </div>
             </div>
         </div>
