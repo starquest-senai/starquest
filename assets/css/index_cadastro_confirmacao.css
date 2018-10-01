@@ -1,0 +1,24 @@
+#logo_navbar{
+    max-width: 35%;
+    height: auto;
+}
+
+.container{
+    width: 100%;
+    max-width: 800px;
+}
+
+.container p{
+    font-size: 15pt;
+    text-align: justify;
+}
+
+.container h4{
+    font-size: 22pt;
+}
+
+.btn{
+    width: 100%;
+    max-width: 100px;
+    font-size: 10pt;
+}

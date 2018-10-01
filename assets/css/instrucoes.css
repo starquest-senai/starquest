@@ -1,0 +1,39 @@
+.alert{
+    margin-top: 15px;
+}
+
+#botoes_voltar_controles{
+    display: block;
+    position: relative;
+    margin-top: 4%;
+}
+
+#botao_voltar{
+    display: block;
+    position: relative;
+    width: 120px;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+#botao_controles{
+    display: block;
+    position: relative;
+    width: 150px;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 15pt;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+#main_pontuacao{
+    margin-top: 4%;
+    margin-left: 0%;
+}

@@ -4,6 +4,11 @@ body {
     background: url("../img/sky.jpg");
     background-size: 100%;
 }
+
+#apresentacao_index{
+    width: 100%;
+}
+
 .starter-template {
   padding: 3rem 1.5rem;
   text-align: center;
@@ -15,14 +20,8 @@ body {
     margin-bottom: 3%;
 }
 
-#container_logo_topo{
-    display: block;
-    position: absolute;
-    margin-top: -4rem;
-}
-
 #logo_navbar{
-    max-width: 50%;
+    max-width: 25%;
     height: auto;
 }
 
@@ -30,7 +29,6 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3%;
 }
 
 .btn-primary{

@@ -1,0 +1,64 @@
+.img-fluid{
+    display: block;
+    position: relative;
+    margin: 0px auto 0px auto;
+    height: 50px;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 800px;
+    padding: 15px;
+    margin: 0px auto;
+    border: 1px solid #000000;
+    background: #f5f5dc;
+    color: #000000;
+}
+.form-signin .checkbox {
+    font-weight: 400;
+}
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#data_nascimento{
+    height: 45px;
+    border-radius: 5px;
+}
+
+.termos_uso{
+    margin-left: 1%;
+}
+
+#check_termos_uso{
+    margin-left: 1%;
+}
+
+.btn{
+    width: 20%;
+    margin-top: 2%;
+}
+
+#botao_cadastro{
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2%;
+    border: 1px solid #000000;
+}
