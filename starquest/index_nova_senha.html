@@ -1,53 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>STARQUEST - Nova senha</title>
-    <link rel="stylesheet" type="text/css" href="_css/index.css"/>
-    <link rel="stylesheet" type="text/css" href="_css/index_recuperar_senha.css"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>StarQuest - Nova Senha</title>
+
+    <!-- bootstrap core css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/starter-template.css" rel="stylesheet">
+    <link href="assets/css/index_cadastro_confirmacao.css" rel="stylesheet">
+
+    <!-- Customização de estilo para esta página -->
+    <link href="assets/css/index_nova_senha.css" rel="stylesheet">
 </head>
+
 <body>
 
-    <header id="cabecalho_inicial">
-        <div id="logo">
-            <a href="logotipos.html"><img class="logotipo" src="_img/PermanentMarker-BevelEmboss-Stroke-InnerShadow-OuterGlow-2.png"/></a>
+    <main role="main" class="container" id="container_nova_senha">
 
-            <div id="login">
-                <div class="email">
-                    Email <br/> <input class="txt_login" type="text" placeholder="E-mail"/> <br/>
-                    <a id="linkar" href="index_recuperar_senha.html">Esqueceu a senha?</a>
+        <img src="assets/img/starquest_nave_sprite_100x100.png" class="img-fluid" alt="Responsive image">
+        <a class="navbar-brand text-center" id="apresentacao_index" href="index.html"><img src="assets/img/starquest_branco_vermelho.png" id="logo_navbar" alt="Responsive image"></a>
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading" style="text-align: center">Informe sua nova senha</h4>
+            <form>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Digite sua nova senha</label>
+                    <input type="password" class="form-control" id="formGroupExampleInput" placeholder="Senha">
                 </div>
-                <div class="senha">
-                    Senha <br/> <input class="txt_login" type="password" placeholder="Senha"/>
-                    <button type="button" class="btn_logar">Entrar</button>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Confirme sua nova senha</label>
+                    <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Repita a senha">
+                </div>
+            </form>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href='index_entrar.html'">
+                            OK
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-lg btn-primary btn-block" type="button" onclick="window.location.href='index.html'" id="enviar_recuperar_senha">
+                            Cancelar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <section id="corpo">
-        <div id="recuperar_senha" style="height: 185px">
-            <div id="titulo_senha">
-                <p>Recupere sua conta</p>
-            </div>
-            <div id="digite_email">
-                <p><input type="password" placeholder="Digite sua nova senha." style="margin: 0px 0px 5px 0px" required autofocus/>
-                    <input type="password" placeholder="Digite novamente sua nova senha." style="margin: 0px 0px 0px 0px" required autofocus/></p>
-            </div>
-            <div id="btn_aceitar_cancelar">
-                <div class="botao_recuperar_senha">
-                    <button class="btn_recuperar_senha" type="button" style=""><a id="linkar" href="index.php" style="text-decoration: none">Enviar</a></button>
-                    <button class="btn_recuperar_senha" type="button" style="background: #6495ed"><a id="linkar" href="index.php" style="text-decoration: none">Cancelar</a></button>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <footer id="rodape">
-        <p class="autoria">Copyright &copy; 2018 - StarQuest Ltda.</p>
-        <p class="redes-sociais"><a id="linkar" href="https://www.facebook.com/marcomauricio1980" target="_blank"> Facebook</a> |
-            <a id="linkar" href="https://twitter.com/_marcomauricio_" target="_blank"> Twitter</a></p>
-    </footer>
+    </main><!-- /.container -->
 
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>
