@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+#recuperar_senha{
+    position: relative;
+    display: block;
+    width: 550px;
+    height: 178px;
+    margin: 10% auto 10% auto;
+    background: #f5f5dc;
+    color: #000000;
+    border: 1px solid #808080;
+    border-radius: 5px;
+}
+
+#confirma_cadastro{
+    position: relative;
+    display: block;
+    width: 550px;
+    height: 228px;
+    margin: 0px auto 10% auto;
+    background: #f5f5dc;
+    color: #000000;
+    border: 1px solid #808080;
+    border-radius: 5px;
+}
+
+#titulo_senha{
+    padding: 0px 5px 0px 5px;
+    margin: 10px 20px 10px 20px;
+    border-bottom: 1px solid #808080;
+}
+
+#titulo_senha p{
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 14pt;
+}
+
+#mensagem_de_erro{
+    position: relative;
+    display: block;
+    width: 550px;
+    margin: 5% auto 0px auto;
+}
+
+#mensagem_de_erro #msg_erro{
+    position: relative;
+    display: block;
+    width: 550px;
+
+    padding: 2px;
+    text-align: center;
+    margin: 5px 5px 5px 0px;
+}
+
+#digite_email p{
+    margin: 20px 5px 20px 100px;
+    font-size: 12pt;
+}
+
+#digite_email input{
+    width: 300px;
+    font-size: 10pt;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+#btn_aceitar_cancelar{
+    padding: 7px 5px 0px 5px;
+    margin: 10px 0px 10px 0px;
+    border-top: 1px solid #808080;
+    background: #e6e6fa;
+    height: 40px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+#div_div_btn_ok{
+    padding: 7px 5px 0px 5px;
+    margin: 10px 0px 10px 0px;
+    border-top: 1px solid #808080;
+    background: #e6e6fa;
+    height: 47px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+#div_btn_ok{
+    padding: 7px 5px 0px 5px;
+    margin: 10px 0px 10px 0px;
+    border-top: 1px solid #808080;
+    background: #e6e6fa;
+    height: 40px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+#btn_aceitar_cancelar .botao_recuperar_senha{
+    position: relative;
+    display: block;
+    float: right;
+    margin-right: 5px;
+}
+
+#div_div_btn_ok .botao_recuperar_senha{
+    position: relative;
+    display: block;
+    float: right;
+    margin-right: 5px;
+}
+
+#btn_aceitar_cancelar .div_btn_ok{
+    position: relative;
+    display: block;
+    float: right;
+    margin-right: 5px;
+}
+
+#div_div_btn_ok .div_btn_ok{
+    position: relative;
+    display: block;
+    float: right;
+    margin-right: 5px;
+}
+
+.btn_recuperar_senha{
+    background-color: #0000ff;
+    color: #ffffff;
+    font-size: 10pt;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+}

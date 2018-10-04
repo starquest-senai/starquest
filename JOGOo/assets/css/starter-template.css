@@ -1,0 +1,39 @@
+body {
+    padding-top: 5rem;
+    color: #ffffff;
+    background: url("../img/sky.jpg");
+    background-size: 100%;
+}
+
+#apresentacao_index{
+    width: 100%;
+}
+
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+    background: #f5f5dc;
+    color: #000000;
+    padding-top: 1.5%;
+    padding-bottom: 1%;
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+
+#logo_navbar{
+    max-width: 25%;
+    height: auto;
+}
+
+.img-fluid{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary{
+    display: block;
+    width: 70%;
+    font-size: 150%;
+    margin: 5px auto 5px auto;
+}

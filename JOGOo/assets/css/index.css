@@ -1,0 +1,212 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+@import url('https://fonts.googleapis.com/css?family=Orbitron:900');
+
+body{
+    background-color: #000000;
+    background: url("../../img/sky.jpg");
+    background-size: 100%;
+    font-family: Avenir;
+    color: #ffffff;
+}
+/* //////////////////// CONFIGURANDO HEADER \\\\\\\\\\\\\\\\\\\\ */
+header{
+    color: #ffffff;
+}
+header#cabecalho_inicial #logo{
+    width: 100%;
+    height: 100px;
+    border-bottom: 4px solid #ffffff;
+}
+
+img.logotipo{
+    display: block;
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
+    width: 30%;
+}
+
+#login{
+    position: relative;
+    display: block;
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    /*border-left: 4px solid #ffffff;*/
+}
+
+#login p{
+    font-size: 10pt;
+    margin: 0px;
+}
+
+#login .email{
+    position: relative;
+    display: block;
+    font-size: 8pt;
+    float: left;
+    padding: 5px;
+    margin: 0px 10px 0px 10px;
+}
+
+#login .senha{
+    position: relative;
+    display: block;
+    font-size: 8pt;
+    float: right;
+    padding: 5px;
+    margin: 0px 10px 15px 0px;
+}
+
+input.txt_login{
+    width: 200px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 10pt;
+    margin-top: 0px;
+}
+
+a.esqueceu_senha{
+    font-size: 8pt;
+}
+
+.btn_logar{
+    display: block;
+    float: right;
+    background-color: #0000ff;
+    color: white;
+    font-size: 10pt;
+    margin: 0px 20px 20px 25px;
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+}
+
+button.btn_logar:hover{
+    background-color: #008000;
+}
+
+/* ////// CONFIGURAÇÃO MENSAGEM ERRO DO LOGIN \\\\\\ */
+#msg_erro_base #msg_erro_login{
+    width: 420px;
+    height: 20px;
+    padding: 2px;
+    margin: 0px auto -3px 15px;
+    font-size: 8pt;
+    text-align: center;
+}
+
+/* //////////////////// CONFIGURANDO SECTION \\\\\\\\\\\\\\\\\\\\ */
+#apresentacao{
+    position: relative;
+    display: block;
+    float: left;
+    width: 59%;
+    /* temporario */
+    margin-top: 5%;
+    margin-bottom: 5%;
+    /*border: 1px solid #ffffff;*/
+}
+
+img.nave{
+    display: block;
+    margin: 20px auto 5px auto;
+}
+
+iframe#texto_apresentacao{
+    display: block;
+    width: 500px;
+    height: 280px;
+    margin: 0px auto 20px auto;
+    border: none;
+    overflow: visible;
+}
+
+iframe#texto_apresentacao::-webkit-scrollbar{
+    display: none;
+}
+
+#cadastro{
+    position: relative;
+    display: block;
+    float: right;
+    width: 40%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    /*border: 1px solid #ffffff;*/
+}
+
+#cadastro h1#titulo_criarConta{
+    margin: 0px 20px 20px 20px;
+    text-align: center;
+    font-size: 25pt;
+    color: #ffffff;
+}
+
+#cadastro #msg_erro{
+    width: 400px;
+    padding: 2px;
+    text-align: center;
+    margin: 5px 5px 5px 55px;
+}
+
+#cadastro input.dados{
+    width: 400px;
+    padding: 5px;
+    margin: 5px 5px 5px 55px;
+    border-radius: 10px;
+    font-size: 14pt;
+}
+
+#cadastro input.data{
+    padding: 5px;
+    margin: 5px 5px 5px 55px;
+    border-radius: 10px;
+    font-size: 12pt;
+    color: #808080;
+}
+
+#cadastro input#confirmar{
+    margin: 10px 5px 5px 55px;
+}
+
+#cadastro input#botao_cadastro{
+    background-color: #008000;
+    color: white;
+    font-size: 14pt;
+    margin: 5px 30% 20px 30%;
+    padding: 10px 40px 10px 40px;
+    border-radius: 5px;
+}
+
+#cadastro button:hover {
+    background-color: #0000ff;
+}
+
+/* //////////////////// CONFIGURANDO FOOTER \\\\\\\\\\\\\\\\\\\\ */
+footer#rodape{
+    clear: both;
+    border-top: 4px solid #ffffff;
+}
+
+footer#rodape p{
+    text-align: center;
+    color: #ffffff;
+}
+
+footer#rodape p.autoria{
+    margin-bottom: 0px;
+}
+
+footer#rodape p.redes-sociais{
+    margin-top: 0px;
+}
+
+#linkar{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#linkar:hover{
+    text-decoration: underline;
+}
