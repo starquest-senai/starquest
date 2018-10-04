@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pt-br">
 <head> 
     <meta charset="UTF-8" />
@@ -16,7 +15,8 @@
         body {
             margin: 15px ;		
         }
-		canvas {			
+		canvas {
+			max-width: 100%;
 			margin-left: 20%;			
 			border: 4px solid #ffffff;
 			border-radius: 20px;
@@ -27,10 +27,10 @@
 </head>
 <body>
 
-	<div id="perguntas">			
+	<div id = "perguntas">			
 	</div>		
 	
-	<div id="btnFace">
+	<div id = "btnFace">
 	
 		<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fstarquest2018senai.000webhostapp.
 		com%2Fcssref%2Fpr_background-image.asp&layout=button_count&size=small&mobile_iframe=
@@ -123,7 +123,7 @@
 			this.button = this.game.add.button(420,380, "botao_reiniciar" ,this.play,this);
 			this.add.text(352,440, 'REINICIAR', { font: 'Comic Sans MS', fontSize: '25px', fill: '#FFF' });		
 			this.button.anchor.setTo(0.5,0.5);	
-			scoreGlobal = 0;
+			scoreGlobal = 0;		
 			
 			// Botão reiniciar
 			this.reiniciar = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
@@ -169,7 +169,7 @@
 			this.button = this.game.add.button(420,380, "play" ,this.play,this);
 			this.add.text(328,440, 'PROXIMA FASE', { font: 'Comic Sans MS', fontSize: '25px', fill: '#FFF' });		
 			this.button.anchor.setTo(0.5,0.5);	
-			faseGlobal ++;
+			faseGlobal ++;			
 
 			// Botão proxima fase
 			this.proximaFase = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
@@ -213,7 +213,7 @@
 			this.nivelText;
 			this.pause;		
 			this.play;
-			this.reiniciarGame;
+			this.reiniciar;
 			this.lives;
 			this.lives_ship;	
 			this.disabledWeapon=false;
@@ -299,6 +299,9 @@
 			this.play = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 			this.play.onDown.add(playJogo,this);				
 
+			// Botão reiniciar
+			this.reiniciar = game.input.keyboard.addKey(Phaser.Keyboard.R);
+			this.reiniciar.onDown.add(reiniciar,this);
 		
 		}
 
@@ -339,9 +342,9 @@
 		// Quando o jogador morre
 			if (this.lives.countLiving() < 1)
 			{
-				shipP.exists=false;	
+				shipP.exists = false;	
 				pause();			
-				game.state.start('GameOver');			
+				game.state.start('GameOver');						
 
 			}
 		}		
@@ -351,10 +354,15 @@
 			asteroideP.kill();
 
 			if(pergunta.alternativa_correta == asteroideP.data.nome)
+				
 				scoreGlobal += 10;
+				
 			else if(scoreGlobal >= 5)
+				
 				scoreGlobal -= 5;
+				
 			else
+				
 				scoreGlobal = 0;
 			
 			this.scoreText.setText('Pontos: ' + scoreGlobal);					
@@ -396,11 +404,10 @@
 				this.weapon.fire();
 			}
 
-			this.nivelText.setText;
+			this.nivelText.setText;			
+			game.world.wrap(this.ship, 16);	
 			
-			game.world.wrap(this.ship, 16);
-			
-			for(var i=0;i < this.group.length;i++){
+			for(var i = 0; i < this.group.length; i++){
 			
 				game.world.wrap(this.group.children[i], 60);
 				
@@ -443,7 +450,10 @@
 			play.style.display = 'none'; // oculta a div
 		
 		var pause = document.getElementById('pausajogo')
-			pause.style.display = 'none'; // oculta a div		
+			pause.style.display = 'none'; // oculta a div	
+
+		var reiniciarGame = document.getElementById('reiniciarjogo')
+			reiniciarGame.style.display = 'none'; // oculta a div		
 		
 		game.paused = false;	
 		myTimer();	
@@ -484,7 +494,7 @@
 	//contador de tempo restante
 		var counter = 15;
 		var timer;
-
+		
 	function myTimer() {
 	
 		timer = setTimeout( function() {
@@ -492,12 +502,16 @@
 		if(game.paused == false){
 			counter--;
 			if( counter > 0 ) {
-				myTimer();				
+				
+				myTimer();
+				
 			}
 			else if(counter == 0)
-			{						
+			{				
+		
 				game.state.start('TelaFinal');					
-				enviarPontuacao ();			
+				enviarPontuacao ();					
+				
 			}		
 		}			
 			
@@ -506,20 +520,20 @@
 
     </script>	
 	
-		<div id="reiniciarjogo">
-			<img id="reiniciarjogo" src="img/botao_reiniciar.png" onclick="reiniciar(),myTimer()">
+		<div id = "reiniciarjogo">
+			<img id = "reiniciarjogo" src = "img/botao_reiniciar.png" onclick = "reiniciar(),myTimer()">
 		</div>
 
-		<div id="btnVoltar">        
-			<a href="pagina_inicial.php" class="button orange shield glossy"><img src="img/botao_voltar_30x34.png"></a>
+		<div id = "btnVoltar">        
+			<a href = "pagina_inicial.php" class = "button orange shield glossy"><img src = "img/botao_voltar_30x34.png"></a>
 		</div>
 		
-		<div id="pausajogo">
-			<img id="pausajogo" src="img/pause-icon_512x512.png" onclick="pausarJogo(),pause()">
+		<div id = "pausajogo">
+			<img id = "pausajogo" src = "img/pause-icon_512x512.png" onclick = "pausarJogo(),pause()">
 		</div>
 		
-		<div id="playjogo">		
-			<img id="playjogo" src="img/play-icon_342x342.png" onclick="playJogo()">			
+		<div id = "playjogo">		
+			<img id = "playjogo" src = "img/play-icon_342x342.png" onclick = "playJogo()">			
 		</div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>

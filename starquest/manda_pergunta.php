@@ -9,8 +9,5 @@ if($return != 0){
 	echo json_encode($return);	
 	
 }
-else
-	
-	echo "Erro ao buscar pergunta!";
 
 ?>
