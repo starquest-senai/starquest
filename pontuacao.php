@@ -33,10 +33,16 @@
             
 			<table class="table table-black">
 			  <thead>
-				<tr>
-				  <th id="titulo" style="text-align: center">Colocação</th>
-				  <th id="titulo" style="text-align: center">Jogador</th>
-				  <th id="titulo" style="text-align: center" >Pontos</th>
+				<tr class="header">
+					<th>
+						Colocação
+					</th>
+					<th style="padding-left:315px">
+						Jogador
+					</th>
+					<th style="padding-left:600px">
+						Pontos
+					</th>
 				</tr>
 			  </thead>
 			  <tbody>
@@ -48,7 +54,7 @@
 						echo "
 						<tr>
 						  <td id='colocacao' style='text-align: center'>$i</td>
-						  <td id='colocacao' style='text-align: center'>Math</td>
+						  <td id='colocacao' style='text-align: center'>Mathetinha</td>
 					<td id='colocacao' style='text-align: center'>100</td>
 				</tr>
 						";
