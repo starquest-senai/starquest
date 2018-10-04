@@ -20,6 +20,7 @@ section#corpo h1{
     border: 10px solid #ffffff;
     border-radius: 10px;
     margin: 3% auto 0% auto;
+	
 }
 
 .container{
@@ -37,6 +38,7 @@ section#corpo h1{
     margin-bottom: 3px;
     overflow: auto;
     color: #ffffff;
+	overflow: hidden;
 }
 
 #botao_voltar{
@@ -54,9 +56,8 @@ section#corpo h1{
 	font-family: 'Press Start 2P', cursive;
 	margin-left: auto;
     margin-right: auto;
- 
-	
-	
+	width: 300px; 
+
 }
 
 
@@ -65,7 +66,38 @@ section#corpo h1{
 	color: #FFA500;
 	font-family: 'Press Start 2P', cursive;
 	
-
-	
 }
+
+th  {
+	font-size: 25px;
+	color: #FFA500;
+	font-family: 'Press Start 2P', cursive;
+	position: absolute;
+	margin-top: -63px;
+	border:none !important;
+
+}
+
+table{
+	margin-top: 60px;
+	table-layout: fixed;
+}
+
+thead, tbody{
+  display: block;  
+}
+
+tbody{
+  overflow-y: scroll;
+  height: 400px;
+  width: 100%;
+  }
+
+
+
+
+
+
+
+
 
