@@ -7,7 +7,7 @@
  */
 
 //CONECTA COM A BASE DE DADOS
-$conexao = mysqli_connect("localhost", "root", "", "db_starquest");
+$conexao = mysqli_connect("localhost", "root", "root", "db_starquest");
 
 if(!$conexao) die("Erro ao se conectar com o banco de dados (conexao.php).");
 ?>

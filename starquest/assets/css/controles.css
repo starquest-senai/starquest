@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+section#corpo h1{   
+    margin-top: 6%;   
+}	
+
 #botao_voltar{
     display: block;
     position: absolute;
@@ -79,6 +83,13 @@ div#texto_controles p{
 }
 
 #pausa_texto{
+    display: block;
+    position: relative;
+    text-align: center;
+    margin: 20px 0px;
+}
+
+#reiniciar_texto{
     display: block;
     position: relative;
     text-align: center;

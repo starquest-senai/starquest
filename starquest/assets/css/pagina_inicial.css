@@ -17,6 +17,14 @@ body{
     position: relative;
     margin-top: 5%;
     margin-left: -30px;
+	color: white; 
+}
+
+#usuario_bemvindo{
+    color: #f5f5dc;
+    font-size: 14pt;
+    font-family: 'Orbitron', sans-serif;
+    text-decoration: underline;
 }
 
 p#bem_vindo{
@@ -138,44 +146,3 @@ p#bem_vindo{
     padding-left: 	3em;
     padding-right: 	3em;
 }
-
-/* =========== FIM NOVA CONFIGURAÇÃO =========== */
-
-/* TELA DE JOGO - CONFIGURAÇÃO DOS BOTÕES */
-
-div#btnFace{
-    position: absolute;
-    margin-left: 65%;
-    margin-top: 38.5%;
-    display: none;
-}
-
-div#playjogo{
-    position: absolute;
-    margin-left: 47%;
-    margin-top: 19%;
-    display: block;
-}
-
-div#pausajogo{
-    position: absolute;
-	margin-left: 47%;
-    margin-top: 19%;
-    display: none;
-}
-
-div#btnVoltar{
-    position: absolute;
-    margin-left: 83%;
-    margin-top: 38%;
-    display: block;	
-}
-
-div#reiniciarjogo{
-	position: absolute;
-    margin-left: 48%;
-    margin-top: 8%;
-    display: none;
-}
-
-/* FIM - TELA DE JOGO - CONFIGURAÇÃO DOS BOTÕES */

@@ -1,3 +1,11 @@
+<?php
+
+include ("includes/banco_de_dados.php");
+include ("includes/conexao.php");
+include ("includes/validacao_sessao.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,22 +17,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
 
 </head>
-<body>
-    <nav class="navbar navbar-light" style="background-color: transparent;">
-        <div class="row">
-            <div class="col">
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/img/LogoInicial_sem_satim.png" width="80" height="80" alt="Logo StarQuest">
-                </a>
-            </div>
-            <div class="col" id="div_bem_vindo">
-                <a class="navbar-brand float-left"  href="#">
-                    <p id="bem_vindo">Seja bem-vindo, _______________!</p>
-                </a>
-            </div>
-        </div>
-    </nav>
 
+<body>
     <section id="corpo">
         <h1>PONTUAÇÃO</h1>
         <a href="pagina_inicial.php" class="button orange shield glossy" id="botao_voltar"> <label>MENU</label> </a>
@@ -33,25 +27,60 @@
             
 			<table class="table table-black">
 			  <thead>
-				<tr>
-				  <th id="titulo" style="text-align: center">Colocação</th>
-				  <th id="titulo" style="text-align: center">Jogador</th>
-				  <th id="titulo" style="text-align: center" >Pontos</th>
+				<tr class="header">
+					<th>
+						Colocação
+					</th>
+					<th style="padding-left:315px">
+						Jogador
+					</th>
+					<th style="padding-left:600px">
+						Pontos
+					</th>
 				</tr>
 			  </thead>
 			  <tbody>
 				
 				<?php
 				
-					for($i=1;$i<15;$i++){
+				$usuario = (string) $_SESSION['usuario']["usuario"];
 				
+				$ranking = select ("SELECT pontuacao, jogadores_usuario FROM progressos ORDER BY pontuacao DESC");
+			
+				$num_registros = count($ranking);
+
+				
+					for($j=0;$j<$num_registros;$j++){
+						$colocacao = $j+1;
+						
+					$teste = ($ranking[$j]['jogadores_usuario']);
+
+					
+						if($teste == $usuario){
+					
 						echo "
+
 						<tr>
-						  <td id='colocacao' style='text-align: center'>$i</td>
-						  <td id='colocacao' style='text-align: center'>Math</td>
-					<td id='colocacao' style='text-align: center'>100</td>
-				</tr>
+						  <td id='corsim' style='text-align: center'>$colocacao<span>º</span></td> 
+						  <td id='corsim' style='text-align: center'> {$ranking[$j]['jogadores_usuario']} </td> 
+						  <td id='corsim' style='text-align: center'> {$ranking[$j]['pontuacao']} </td>
+						</tr>
+						
 						";
+						
+						} else {
+							
+						echo "
+
+						<tr>
+						  <td id='colocacao' style='text-align: center'>$colocacao<span>º</span></td> 
+						  <td id='colocacao' style='text-align: center'> {$ranking[$j]['jogadores_usuario']} </td> 
+						  <td id='colocacao' style='text-align: center'> {$ranking[$j]['pontuacao']} </td>
+						</tr>	
+						
+						";
+						
+						}
 					}
 				
 				?>
@@ -60,6 +89,7 @@
 			</table>
         </main>
     </section>
+	
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

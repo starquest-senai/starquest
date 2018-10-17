@@ -1,3 +1,9 @@
+<?php 
+
+include_once("includes/validacao_sessao.php");
+
+?>
+
 <html lang="pt-br">
 <head> 
     <meta charset="UTF-8" />
@@ -6,9 +12,12 @@
     <link rel="stylesheet" type="text/css" href="assets/css/perguntas.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/index.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/pagina_inicial.css"/>
+	<link rel="stylesheet" type="text/css" href="assets/css/jogo.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	
     <script src="assets/js/phaser.min.js"></script>	
+	<script src="assets/js/state_game_over.js"></script>	
+	<script src="assets/js/state_tela_final.js"></script>	
  
     <style type="text/css">
 	
@@ -32,17 +41,10 @@
 	
 	<div id = "btnFace">
 	
-		<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fstarquest2018senai.000webhostapp.
-		com%2Fcssref%2Fpr_background-image.asp&layout=button_count&size=small&mobile_iframe=
-		true&appId=446617082491196&width=113&height=20" width="113" height="22" style="border:none;overflow:hidden" 
-		scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">
-		</iframe>
-	
-		<div id="botao_compartilhar" class="bt_compartilhar" data-href="starquest2018senai.000webhostapp.com" data-layout="button_count"
-		data-size="small" data-mobile-iframe="true"> 
-		<a target="_blank" href="https://www.facebook.com/sharer/sharer.
-		php?u=http%3A%2F%2Fstarquest2018senai.000webhostapp.com%2F&src=sdkpreparse"> </a>		
-		</div>
+		<iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fsenaichallenge.tk%2Fstarquest
+		&layout=button_count&size=large&mobile_iframe=true&width=129&height=28&appId" 
+		width="129" height="28"	style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" 
+		allow="encrypted-media"></iframe>
 		
 	</div>
 
@@ -54,8 +56,36 @@
 	var faseGlobal = 1;
 	var arrayPerguntas = new Array();
 	var pergunta;
+	var audio1 = new Audio();
+	var audio2 = new Audio();
+	var audio3 = new Audio();
+	var audio4 = new Audio();	
 		
-	CarregarPerguntas();
+	CarregarPerguntas();	
+	
+	function CarregarFase(){
+		
+		var nome = "<?php echo $_SESSION['usuario']["usuario"]; ?>";	
+		var xhttp = new XMLHttpRequest();
+		
+		xhttp.onreadystatechange = function(){
+		if (this.readyState == 4 && this.status == 200){
+		
+				arrayProgresso = JSON.parse(this.responseText);		
+				scoreGlobal = parseInt(arrayProgresso[0]["pontuacao"]);
+				faseGlobal = parseInt(arrayProgresso[0]["fase"]);	
+				faseGlobal ++;
+				
+				jogoStateObjeto.scoreText.setText('Pontos: ' + scoreGlobal);
+				jogoStateObjeto.nivelText.setText('Fase: ' + faseGlobal);								
+			
+			}	
+		};
+		
+		xhttp.open("GET", "grava_fase.php?jogadores_usuario=" + nome, true);
+		xhttp.send();
+	
+	}		
 	
 	function CarregarPerguntas (){
 		
@@ -94,112 +124,27 @@
 			xhttp.open("GET", "manda_pergunta.php", true);
 			xhttp.send();
 	
+
 	}	
 	
-	function enviarPontuacao(){
-		
-		pUsuario = "sailorpablo";			
+	function TocarMusicaGame(){			
+			
+			audio4.src = "sons/game.mp3";
+			audio4.play();
+			
+	}	
 	
-		var xhttp = new XMLHttpRequest();			
-			xhttp.open("GET", "banco_de_fases.php?jogadores_usuario=" + pUsuario + "&fase=" + faseGlobal + "&pontuacao=" + scoreGlobal, true);
-			xhttp.send();
-		
-		
-	}		
+	function enviarPontuacao(){			
 	
-	class gameoverState extends Phaser.State{
+		nome = "<?php print_r($_SESSION['usuario']["usuario"]); ?>";	
 		
-		constructor() {
-				super();
-				this.button;	
-				this.reiniciar;		
-			}	
+			var xhttp = new XMLHttpRequest();			
+				xhttp.open("GET", "banco_de_fases.php?jogadores_usuario=" + nome + "&fase=" + faseGlobal + "&pontuacao=" + scoreGlobal, true);
+				xhttp.send();		
 		
-		create() {
-		
-			this.scoreText = this.add.text(80,520, 'Pontos:', { font: 'Comic Sans MS', fontSize: '30px', fill: '#FFF' });
-			this.scoreText.setText('Pontos: ' + scoreGlobal);			
-			this.add.text(130,140, 'GAME OVER :(', { font: 'Comic Sans MS', fontSize: '80px', fill: '#FFF' });			
-			this.button = this.game.add.button(420,380, "botao_reiniciar" ,this.play,this);
-			this.add.text(352,440, 'REINICIAR', { font: 'Comic Sans MS', fontSize: '25px', fill: '#FFF' });		
-			this.button.anchor.setTo(0.5,0.5);	
-			scoreGlobal = 0;		
-			
-			// Botão reiniciar
-			this.reiniciar = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-			this.reiniciar.onDown.add(this.play,this);	
-			
-			// Botão compartilhar facebook
-			var btnFacebook = document.getElementById('btnFace');
-			btnFacebook.style.display = 'block'; // mostra a div
-		}
-		
-		play(){	
-		
-			counter = 5;
-			this.game.state.start('jogo');	
-			
-			var play = document.getElementById('playjogo');
-			play.style.display = 'block'; // mostra a div	
-								
-			myTimer();
-			
-			var btnFacebook = document.getElementById('btnFace');
-			btnFacebook.style.display = 'none'; // oculta a div
-			
-			CarregarPerguntas();
-			
-		}	
-		
-	};			
+	}	
 	
-	class finalState extends Phaser.State{
-		
-		constructor() {
-				super();
-				this.button;
-				this.proximaFase;				
-			}	
-		
-		create() {
-			
-			this.scoreText = this.add.text(80,520, 'Pontos:', { font: 'Comic Sans MS', fontSize: '30px', fill: '#FFF' });
-			this.scoreText.setText('Pontos: ' + scoreGlobal);				
-			this.add.text(130,140, '!! PARABÉNS !!', { font: 'Comic Sans MS', fontSize: '80px', fill: '#FFF' });			
-			this.button = this.game.add.button(420,380, "play" ,this.play,this);
-			this.add.text(328,440, 'PROXIMA FASE', { font: 'Comic Sans MS', fontSize: '25px', fill: '#FFF' });		
-			this.button.anchor.setTo(0.5,0.5);	
-			faseGlobal ++;			
-
-			// Botão proxima fase
-			this.proximaFase = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-			this.proximaFase.onDown.add(this.play,this);	
-			
-			// Botão compartilhar facebook
-			var btnFacebook = document.getElementById('btnFace');
-			btnFacebook.style.display = 'block'; // mostra a div
-		}
-		
-		play(){		
-		
-			counter = 5;
-			this.game.state.start('jogo');	
-
-			var play = document.getElementById('playjogo');
-			play.style.display = 'block'; // mostra a div	
-								
-			myTimer();
-			
-			var btnFacebook = document.getElementById('btnFace');
-			btnFacebook.style.display = 'none'; // oculta a div
-			
-			CarregarPerguntas();
-			
-		}	
-		
-	};		
-	
-
+	// Inicio state jogo
     class jogoState extends Phaser.State{
 		
 		constructor() {
@@ -209,16 +154,17 @@
 			this.weapon;
 			this.cursors;
 			this.fireButton;
-			this.scoreText;
-			this.nivelText;
-			this.pause;		
+			this.pause;	
+			this.explosions;			
 			this.play;
 			this.reiniciar;
 			this.lives;
 			this.lives_ship;	
-			this.disabledWeapon=false;
+			this.disabledWeapon = false;
 			this.tempoText;
-			this.myArray = ['A', 'B', 'C'];			
+			this.myArray = ['A', 'B', 'C'];		
+			this.scoreText = "";
+			this.nivelText = "";
 		
 		}
 
@@ -230,13 +176,14 @@
 			game.load.image('asteroidemedioB','img/AsteroideG_B_70x80.png');
 			game.load.image('asteroidemedioC','img/AsteroideG_C_70x80.png');
 			game.load.image('play','img/play-icon_342x342.png');
-			game.load.image('botao_reiniciar','img/botao_reiniciar.png');				
+			game.load.image('botao_reiniciar','img/botao_reiniciar.png');	
+			game.load.spritesheet('kaboom', 'img/explode.png', 128, 128);			
 	
 		}
 	
 		create() {
 	
-	   		//Jogo inicia pausado			
+	   		// Jogo inicia pausado			
 			game.paused = true;			
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -301,10 +248,21 @@
 
 			// Botão reiniciar
 			this.reiniciar = game.input.keyboard.addKey(Phaser.Keyboard.R);
-			this.reiniciar.onDown.add(reiniciar,this);
+			this.reiniciar.onDown.add(reiniciar,this);		
+			
+			// Criar explosão
+			this.explosions = game.add.group();
+			this.explosions.createMultiple(30, 'kaboom');
+			this.explosions.forEach(setupInvader, this);
+			
+			CarregarFase();	
 		
 		}
 
+		
+		
+
+		
 		criarGrupo(qtd){
 
 			if(this.game != undefined){
@@ -325,8 +283,30 @@
 				
 			}
 			
-		}	
-	
+		}			
+		
+		// Criar sons 
+		TocarMusicaTiro(){			
+			
+			audio1.src = "sons/tiro.WAV";
+			audio1.play();
+			
+		}
+		
+		TocarMusicaGameOver(){			
+			
+			audio2.src = "sons/game_over.mp3";
+			audio2.play();
+			
+		}
+		
+		PausarMusicaGame(){
+			
+			audio4.pause();
+			
+		}		
+		
+		// Criar grupo Asteroides
 		colidiu(shipP, asteroideP){		
 			
 			var live = this.lives.getFirstAlive();
@@ -339,26 +319,32 @@
 					setTimeout(function(){ jogoStateObjeto.criarGrupo(1); }, 3000);
 			}	
 	
-		// Quando o jogador morre
+			// Quando o jogador morre
 			if (this.lives.countLiving() < 1)
 			{
 				shipP.exists = false;	
 				pause();			
 				game.state.start('GameOver');						
-
+				this.TocarMusicaGameOver();
+				this.PausarMusicaGame();
 			}
 		}		
 
 		destruiu(bulletsP,asteroideP){
 			bulletsP.kill();
 			asteroideP.kill();
+			 
+			// Executar explosão 
+			var explosion = this.explosions.getFirstExists(false);
+			explosion.reset(asteroideP.body.x, asteroideP.body.y);
+			explosion.play('kaboom', 30, false, true);
 
-			if(pergunta.alternativa_correta == asteroideP.data.nome)
-				
+			if(pergunta.alternativa_correta == asteroideP.data.nome)		
+  
 				scoreGlobal += 10;
 				
-			else if(scoreGlobal >= 5)
-				
+			else if(scoreGlobal >= 5)			
+    
 				scoreGlobal -= 5;
 				
 			else
@@ -402,6 +388,7 @@
 			if (this.fireButton.isDown && !this.disabledWeapon)
 			{
 				this.weapon.fire();
+				this.TocarMusicaTiro();
 			}
 
 			this.nivelText.setText;			
@@ -420,6 +407,7 @@
 		}	 
 
 	};		
+	// Fim state jogo
 	
 	var jogoStateObjeto = new jogoState();	
 	
@@ -427,8 +415,14 @@
 	game.state.add('GameOver',gameoverState);
 	game.state.add('jogo',jogoStateObjeto);	
 	game.state.start('jogo');
-	
-			
+
+		function setupInvader (invader) {
+
+    invader.anchor.x = 0.5;
+    invader.anchor.y = 0.5;
+    invader.animations.add('kaboom');
+
+}
 	function pausarJogo() { 
 	
 		var play = document.getElementById('playjogo');
@@ -441,6 +435,7 @@
 			reiniciarGame.style.display = 'block'; // mostra a div
 		
 		game.paused = true;	 
+		PausarMusicaGame();
 		
 	}		
 	
@@ -455,7 +450,8 @@
 		var reiniciarGame = document.getElementById('reiniciarjogo')
 			reiniciarGame.style.display = 'none'; // oculta a div		
 		
-		game.paused = false;	
+		game.paused = false;
+		TocarMusicaGame();
 		myTimer();	
 		
 	}	
@@ -466,11 +462,18 @@
 		
 	}
 	
-	function despausar(){	
-	
-		game.paused = false;
-		
-	}
+	function TocarMusicaTelaFinal(){			
+			
+			audio3.src = "sons/tela_final.mp3";
+			audio3.play();
+			
+	}	
+
+	function PausarMusicaGame(){
+			
+			audio4.pause();
+			
+	}	
 	
 	function reiniciar(){
 		
@@ -510,7 +513,9 @@
 			{				
 		
 				game.state.start('TelaFinal');					
-				enviarPontuacao ();					
+				enviarPontuacao();	
+				TocarMusicaTelaFinal();		
+				PausarMusicaGame();
 				
 			}		
 		}			
@@ -525,7 +530,7 @@
 		</div>
 
 		<div id = "btnVoltar">        
-			<a href = "pagina_inicial.php" class = "button orange shield glossy"><img src = "img/botao_voltar_30x34.png"></a>
+			<a href = "pagina_inicial.php" class = "button orange shield glossy" id = "botao_voltar_menu"> <label> MENU </label> </a>
 		</div>
 		
 		<div id = "pausajogo">

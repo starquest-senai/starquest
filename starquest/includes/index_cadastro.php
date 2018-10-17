@@ -16,7 +16,7 @@ echo $data_registro = date("Y-m-d");
         //Mensagem de erro
         $msg = "";
         $status = "danger";
-        $location = "../index.php";
+        $location = "../index_cadastro.php";
 
         //Recebe dados cadastrados
         $nome = $_POST["nome"];
@@ -37,17 +37,22 @@ echo $data_registro = date("Y-m-d");
 
         //Se o resultado for maior que 0, já existe email e/ou usuario cadastrado
         if (mysqli_num_rows($verifica_email_bd) > 0){
-            $msg = "O email " . $email . " já existe no cadastro.";
+            $msg = "O email &laquo;" . $email . "&raquo; já existe no cadastro.";
+            $parametros = '?' . http_build_query(array('mensagem' => $msg, 'status' => $status, 'nome' => $nome, 'email' => $email, 'usuario' => $usuario, 'data_nasc' => $data_nasc));
         } elseif (mysqli_num_rows($verifica_usuario_bd) > 0) {
-            $msg = "O usuário " . $usuario . " já existe no cadastro";
+            $msg = "O usuário &laquo;" . $usuario . "&raquo; já existe no cadastro";
+            $parametros = '?' . http_build_query(array('mensagem' => $msg, 'status' => $status, 'nome' => $nome, 'email' => $email, 'usuario' => $usuario, 'data_nasc' => $data_nasc));
         } else {
             echo php_insert("INSERT into jogadores(usuario, nome, email, senha, data_nascimento, data_registro) VALUES('{$usuario}','{$nome}', '{$email}','{$senha}','{$data_nasc}','{$data_registro}')");
+            echo php_insert("INSERT into progressos (id, fase, pontuacao, jogadores_usuario) VALUES (DEFAULT, 0, 0, '{$usuario}')");
             $msg = "Sua conta foi criada com sucesso!";
             $status = "success";
             $location = "../index_cadastro_confirmacao.php";
+            $parametros = '?' . http_build_query(array('mensagem' => $msg, 'status' => $status));
         }
     }
 
-    $parametros = '?' . http_build_query(array('mensagem' => $msg, 'status' => $status));
+    //$parametros = '?' . http_build_query(array('mensagem' => $msg, 'status' => $status,));
     header("Location: $location" . $parametros);
 ?>
+

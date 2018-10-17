@@ -1,3 +1,7 @@
+<?php
+    include "includes/validacao_sessao.php";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,22 +15,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
 
 </head>
-<body>
-    <nav class="navbar navbar-light" style="background-color: transparent;">
-        <div class="row">
-            <div class="col">
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/img/LogoInicial_sem_satim.png" width="80" height="80" alt="Logo StarQuest">
-                </a>
-            </div>
-            <div class="col" id="div_bem_vindo">
-                <a class="navbar-brand float-left"  href="#">
-                    <p id="bem_vindo">Seja bem-vindo, _______________!</p>
-                </a>
-            </div>
-        </div>
-    </nav>
 
+<body>
     <section id="corpo">
         <h1>CONTROLES</h1>
         <a href="pagina_inicial.php" class="button orange shield glossy" id="botao_voltar"> <label>MENU</label> </a>
@@ -34,25 +24,32 @@
             <div class="container-fluid" id="teclado">
                 <div class="row">
                     <div class="col">
-                        <img src="assets/img/keyboard_wasd_300x200.png" id="wasd">
+                        <img src="assets/img/keyboard_flechas_300x200.png" id="wasd" title="Flechas direcionais para mover a nave" alt="Setas">
                     </div>
                     <div class="col">
-                        <img src="assets/img/keyboard_flechas_300x200.png" id="wasd">
+                        <img src="assets/img/keyboard_ENTER.png" id="enter" title="Tecla ENTER para iniciar o jogo" alt="Enter" >
                     </div>
                 </div>
-                <p>Movimentar a nave</p>
+                <div class="row">
+                    <div class="col">
+                        <p>Mover a nave</p>
+                    </div>
+                    <div class="col">
+                        <p id="enter_texto">Jogar</p>
+                    </div>
+                </div>
             </div>
 
             <div class="container-fluid" id="botoes">
                 <div class="row">
                     <div class="col">
-                        <img src="assets/img/keyboard_space_300x100.png" id="teclas">
+                        <img src="assets/img/keyboard_space_300x100.png" id="teclas" title="Barra de espaço para atirar" alt="Barra de espaço">
                     </div>
                     <div class="col">
-                        <img src="assets/img/keyboard_Pe.png" id="teclas">
+                        <img src="assets/img/keyboard_Pe.png" id="teclas" title="Tecla 'P' para pausar o jogo" alt="Tecla 'P'">
                     </div>
                     <div class="col">
-                        <img src="assets/img/keyboard_ENTER.png" id="enter">
+                        <img src="assets/img/keyboard_r.png" id="teclas" title="Tecla 'R' para reiciar o jogo" alt="Tecla 'R'">
                     </div>
                 </div>
                 <div class="row" id="texto_controles">
@@ -63,7 +60,7 @@
                         <p id="pausa_texto">Pausa</p>
                     </div>
                     <div class="col">
-                        <p id="enter_texto">Jogar</p>
+                        <p id="reiniciar_texto">Reiniciar</p>
                     </div>
                 </div>
             </div>

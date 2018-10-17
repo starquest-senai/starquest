@@ -1,0 +1,14 @@
+.img-fluid{
+    display: block;
+    position: relative;
+    margin: 0px auto 0px auto;
+    height: 50px;
+}
+
+#btn_entrar{
+    margin: 1% auto 1% auto;
+}
+
+#btn_cancelar{
+    margin: 1% auto 1% auto;
+}

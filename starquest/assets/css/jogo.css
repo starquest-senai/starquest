@@ -1,0 +1,43 @@
+div#btnFace{
+    position: absolute;
+    margin-left: 65%;
+    margin-top: 38.5%;
+    display: none;
+}
+
+div#playjogo{
+    position: absolute;
+    margin-left: 47%;
+    margin-top: 19%;
+    display: block;
+}
+
+div#pausajogo{
+    position: absolute;
+	margin-left: 47%;
+    margin-top: 19%;
+    display: none;
+}
+
+#botao_voltar_menu{	
+    display: block;
+    position: absolute;
+    width: 120px;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin: 7.5% 0% 3% 3%;	
+}
+
+div#btnVoltar{
+    position: absolute;
+    margin-left: 85%;
+    margin-top: 38%;
+    display: block;	
+}
+
+div#reiniciarjogo{
+	position: absolute;
+    margin-left: 48%;
+    margin-top: 8%;
+    display: none;
+}
