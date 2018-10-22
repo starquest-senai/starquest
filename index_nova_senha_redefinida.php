@@ -23,8 +23,8 @@
         <img src="assets/img/starquest_nave_sprite_100x100.png" class="img-fluid" alt="Responsive image">
         <a class="navbar-brand text-center" id="apresentacao_index" href="index.php"><img src="assets/img/starquest_branco_vermelho.png" id="logo_navbar" alt="Responsive image"></a>
         <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading" style="text-align: center">Parabéns! Sua conta foi criada com sucesso!</h4>
-            <p>Um e-mail de confirmação foi enviado para o endereço de e-mail que você forneceu. Confirme a sua conta clicando no link enviado e logo após faça login. </p>
+            <h4 class="alert-heading" style="text-align: center">Parabéns!</h4>
+            <p style="text-align: center"> Sua senha foi redefinida com sucesso! <br> Acesse sua conta com a nova senha e bom divertimento!</p>
             <hr>
             <div class="col">
                 <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href='index_entrar.php'">

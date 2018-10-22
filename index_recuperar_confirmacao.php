@@ -7,31 +7,34 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/img/nave.ico" type="image/x-icon"/>
 
-    <title>StarQuest - Cadastro Confirmação</title>
+    <title>StarQuest - Recuperar Senha</title>
 
     <!-- bootstrap core css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/starter-template.css" rel="stylesheet">
+    <link href="assets/css/index_cadastro_confirmacao.css" rel="stylesheet">
 
     <!-- Customização de estilo para esta página -->
-    <link href="assets/css/index_cadastro_confirmacao.css" rel="stylesheet">
+
 </head>
 
 <body>
-
     <main role="main" class="container">
+
         <img src="assets/img/starquest_nave_sprite_100x100.png" class="img-fluid" alt="Responsive image">
         <a class="navbar-brand text-center" id="apresentacao_index" href="index.php"><img src="assets/img/starquest_branco_vermelho.png" id="logo_navbar" alt="Responsive image"></a>
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading" style="text-align: center">Parabéns! Sua conta foi criada com sucesso!</h4>
-            <p>Um e-mail de confirmação foi enviado para o endereço de e-mail que você forneceu. Confirme a sua conta clicando no link enviado e logo após faça login. </p>
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading" style="text-align: center">Como recuperar sua conta</h4>
+            <p class="text-center">Um email com instruções para recuperar sua conta <br> foi enviado para sua caixa de mensagens.</p>
             <hr>
             <div class="col">
-                <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href='index_entrar.php'">
+                <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="window.location.href='index_nova_senha.php'">
                     OK
                 </button>
             </div>
         </div>
+
+
     </main><!-- /.container -->
 
     <!-- Placed at the end of the document so the pages load faster -->

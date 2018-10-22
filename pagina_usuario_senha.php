@@ -13,9 +13,10 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/starter-template.css" rel="stylesheet">
     <link href="assets/css/index_cadastro_confirmacao.css" rel="stylesheet">
+    <link href="assets/css/index_nova_senha.css" rel="stylesheet">
 
     <!-- Customização de estilo para esta página -->
-    <link href="assets/css/index_nova_senha.css" rel="stylesheet">
+    <link href="assets/css/pagina_usuario_senha.css" rel="stylesheet">
 
     <script>
         function valida_senha (input){
@@ -33,12 +34,11 @@
 
     <main role="main" class="container" id="container_nova_senha">
 
-        <img src="assets/img/starquest_nave_sprite_100x100.png" class="img-fluid" alt="Responsive image">
-        <a class="navbar-brand text-center" id="apresentacao_index" href="index.php"><img src="assets/img/starquest_branco_vermelho.png" id="logo_navbar" alt="Responsive image"></a>
         <div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading" style="text-align: center">Informe sua nova senha</h4>
+            <img src="assets/img/starquest_nave_sprite_100x100.png" class="img-fluid" alt="Responsive image">
+            <h3 style="text-align: center; font-weight: bold">EDITAR NOVA SENHA</h3>
 
-            <form action="index_nova_senha_redefinida.php" method="post">
+            <form action="includes/pagina_usuario_senha.php" method="post">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Digite sua nova senha</label>
                     <input type="password" name="senha" class="form-control" id="senha" placeholder="Senha" required>
@@ -52,10 +52,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+                            <button class="btn btn-lg btn-secondary btn-block" id="btn_cancelar" type="button" onclick="window.location.href='pagina_usuario.php'">
+                                Cancelar
+                            </button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-lg btn-primary btn-block" type="button" onclick="window.location.href='index.php'" id="enviar_recuperar_senha">Cancelar</button>
+                            <button class="btn btn-lg btn-primary btn-block" id="btn_entrar" type="submit">Salvar</button>
                         </div>
                     </div>
                 </div>
